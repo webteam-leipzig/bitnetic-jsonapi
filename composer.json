@@ -1,0 +1,34 @@
+{
+  "name": "bitnetic/jsonapi",
+  "description": "A laravel-based jsonapi.org compatibility package",
+  "type": "package",
+  "authors": [
+    {
+      "name": "Mathias Lieber",
+      "email": "lieber@bitnetic.de"
+    }
+  ],
+  "require": {
+    "laravel/framework": "5.5.*|5.6.*"
+  },
+
+  "require-dev": {
+  },
+
+  "autoload": {
+    "psr-4": {
+      "Bitnetic\\JsonApi\\": "src"
+    }
+  },
+
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bitnetic\\JsonApi\\JsonApiServiceProvider"
+      ]
+    }
+  }
+}
