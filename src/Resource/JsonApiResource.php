@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\Resource;
 
 /**
  * @SWG\Definition(
- *   required={"data, meta, errors"},
+ *   required={"data", "meta", "errors"},
  *   type="object",
  *   @SWG\Xml(name="JsonApiResource")
  * )
