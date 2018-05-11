@@ -8,7 +8,7 @@ but ongoing work strives for a more complete coverage of the standard.
 
 You can install the package via _composer_:
 
-    $ composer install bitnetic/jsonapi "0.1.*"
+    $ composer require bitnetic/jsonapi "0.1.*"
 
 JsonApi comes with a config file named _config/jsonapi.php_.
 This file is deployed to the central laravel configuration directory using the _vendor:publish_ command:
