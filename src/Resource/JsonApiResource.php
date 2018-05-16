@@ -7,7 +7,6 @@ use Illuminate\Http\Resources\Json\Resource;
 
 /**
  * @SWG\Definition(
- *   required={"data", "meta", "errors"},
  *   type="object",
  *   @SWG\Xml(name="JsonApiResource")
  * )
@@ -18,8 +17,8 @@ use Illuminate\Http\Resources\Json\Resource;
  * @SWG\Property(
  *   property="meta",
  *   type="object",
- *   required={"status"},
  *   @SWG\Property(property="status", type="number", example=200)
+ *   @SWG\Property(property="success", type="boolean", example=true)
  * )
  * @property \stdClass $meta
  *
@@ -49,11 +48,24 @@ class JsonApiResource extends Resource
             $meta = array_merge([], $metaOrKey);
         }
 
+        if ((!empty($errors)) || ($statusCode >= 400)) {
+            $success = false;
+        } else {
+            $success = true;
+        }
+
         $meta['status'] = $statusCode;
-        $this->additional([
+        $meta['success'] = $success;
+
+        $additionals = [
             'meta' => $meta,
-            'errors' => $errors,
-        ]);
+        ];
+
+        if (!$success) {
+            $additionals['errors'] = $errors;
+        }
+
+        $this->additional($additionals);
     }
 
     /**
@@ -92,6 +104,14 @@ class JsonApiResource extends Resource
 
         if ($this->additional['meta']['status'] !== 200) {
             $response->setStatusCode($this->additional['meta']['status']);
+        }
+
+        // mutually exclude data and errors
+        if (isset($this->additional['errors'])) {
+            $data = $response->getData(true);
+            unset($data['data']);
+            $response->setData($data);
+            // echo ("lalala");
         }
 
         return $response;

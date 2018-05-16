@@ -28,11 +28,24 @@ class JsonApiResourceCollection extends AnonymousResourceCollection
     ) {
         parent::__construct($resource, $collects);
 
+        if ((!empty($errors)) || ($statusCode >= 400)) {
+            $success = false;
+        } else {
+            $success = true;
+        }
+
         $meta['status'] = $statusCode;
-        $this->additional([
+        $meta['success'] = $success;
+
+        $additionals = [
             'meta' => $meta,
-            'errors' => $errors,
-        ]);
+        ];
+
+        if (!$success) {
+            $additionals['errors'] = $errors;
+        }
+
+        $this->additional($additionals);
     }
 
     /**
@@ -46,6 +59,14 @@ class JsonApiResourceCollection extends AnonymousResourceCollection
 
         if ($this->additional['meta']['status'] !== 200) {
             $response->setStatusCode($this->additional['meta']['status']);
+        }
+
+        // mutually exclude data and errors
+        if (isset($this->additional['errors'])) {
+            $data = $response->getData(true);
+            unset($data['data']);
+            $response->setData($data);
+            // echo ("lalala");
         }
 
         return $response;
