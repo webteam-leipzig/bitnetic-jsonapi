@@ -87,6 +87,6 @@ The formatted Json-Api-Response from the examples above should produce something
       },
       "meta": {
         "status": 200
-      },
-      "errors": {}
+        "success": true
+      }
     }
