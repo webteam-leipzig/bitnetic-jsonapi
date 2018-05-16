@@ -111,7 +111,6 @@ class JsonApiResource extends Resource
             $data = $response->getData(true);
             unset($data['data']);
             $response->setData($data);
-            // echo ("lalala");
         }
 
         return $response;

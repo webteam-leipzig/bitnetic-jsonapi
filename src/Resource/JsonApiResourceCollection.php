@@ -66,7 +66,6 @@ class JsonApiResourceCollection extends AnonymousResourceCollection
             $data = $response->getData(true);
             unset($data['data']);
             $response->setData($data);
-            // echo ("lalala");
         }
 
         return $response;
