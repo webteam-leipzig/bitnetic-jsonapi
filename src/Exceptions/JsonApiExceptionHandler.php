@@ -3,6 +3,7 @@
 namespace Bitnetic\JsonApi\Exceptions;
 
 use Bitnetic\JsonApi\Resource\ArrayResource;
+use Throwable;
 use function Composer\Autoload\includeFile;
 
 /**
@@ -15,10 +16,10 @@ class JsonApiExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \Exception $exception
+     * @param  Throwable $exception
      * @return @return \Illuminate\Http\Response|null
      */
-    public static function render($request, \Exception $exception)
+    public static function render($request, Throwable $exception)
     {
         if (! $request->expectsJson()) {
             return null;

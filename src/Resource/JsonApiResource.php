@@ -3,7 +3,7 @@
 namespace Bitnetic\JsonApi\Resource;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @SWG\Definition(
@@ -28,7 +28,7 @@ use Illuminate\Http\Resources\Json\Resource;
  * Class JsonApiResource
  * @package Bitnetic\JsonApi\Resource
  */
-class JsonApiResource extends Resource
+class JsonApiResource extends JsonResource
 {
     /**
      * JsonApiResource constructor.
