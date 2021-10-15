@@ -1,5 +1,5 @@
 {
-  "name": "bitnetic/jsonapi",
+  "name": "wtl/bitnetic-jsonapi",
   "description": "A laravel-based jsonapi.org compatibility package",
   "type": "package",
   "authors": [
@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "laravel/framework": "5.5.*|5.6.*|5.7.*"
+    "laravel/framework": "7.*|8.*"
   },
 
   "require-dev": {
